@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html data-ng-app='myApp' data-ng-csp>
+    <head>
+        <title>Webservice buddy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="css/lib/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/app.css"/>
+    </head>
+    <body data-ng-controller='MainCtrl'>
+    
+        <div id="header">Hello there! Welcome :) </div><br>
+        
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active"><a href="#tests" aria-controls="tests" role="tab" data-toggle="tab">Tests</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                <li role="presentation"><a href="#reports" aria-controls="reports" role="tab" data-toggle="tab">Reports</a></li>
+            </ul>
+      
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Tests tab -->
+                <div role="tabpanel" class="tab-pane active" id="tests">
+                    <br>
+                    <label> Request Type : 
+                        <select ng-model="requestType">
+                            <option value="GET">GET</option>
+                        </select>
+                    </label><br>
+                    <label>URL : <input size="100" ng-model="url"/></label><br>
+
+                    <button ng-click="getAngular()">Try</button>                    
+                    <button ng-click="addTest()">Add to tests</button>
+                    <br><br>      
+                    <div>Response : 
+                        <div id="response"></div>
+                    </div>
+                </div>
+                
+                <!-- Settings tab -->
+                <div role="tabpanel" class="tab-pane" id="settings"><br>
+                    <label>Start in : <input ng-model="startIn"/> mins</label><br>
+                    <label>Repeat every : <input ng-model="repeat"/> mins</label><br>
+                    <button ng-click="generateAlarm()">Save</button>
+                </div>
+                
+                <!-- Reports tab -->
+                <div role="tabpanel" class="tab-pane" id="reports">Train is on the way</div>
+            </div>
+        </div>       
+        
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/custom/db.js"></script>
+        <script src="js/custom/app.js"></script>
+        <script src="js/lib/jquery.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+     
+    </body>
+</html>

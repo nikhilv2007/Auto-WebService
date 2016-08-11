@@ -1,0 +1,23 @@
+{
+	"name":"AutoWebService",
+	"description":"Automated Webservice testing",
+	"version":"0.0.1",
+	"manifest_version":2,
+	"app":{
+		"background": {
+	      "scripts": ["js/custom/db.js", "background.js"]
+	    }
+	},
+	"icons":{/*"16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png"*/
+    },
+	"permissions":[
+		"alwaysOnTopWindows",
+        "alarms",
+        "background",
+        "unlimitedStorage"
+	],
+	"minimum_chrome_version":"36.0.1985.103",
+	"offline_enabled":false
+}

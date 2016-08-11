@@ -1,0 +1,21 @@
+body, a, select, button, input{
+    //background-color: whilte;
+    //color: black;
+}
+
+li{
+   border: solid 1px;
+    font-size: 20px;
+}
+
+button, li {    
+    border-radius: 5px;
+}
+
+li.active > a{
+    //color: white;
+}
+
+a:hover{
+    //color: white;
+}
