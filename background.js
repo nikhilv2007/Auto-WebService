@@ -54,7 +54,8 @@ function makeRequests(data){
     xhttp.open(data.value.requestType, data.value.url, true);
     xhttp.send();
     */
-    
+    /*
+    // --------------- TODO : promise + sequence @ http://www.html5rocks.com/en/tutorials/es6/promises/ & https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise---------
     // Code from mozilla blog
     for(var i in data){
         console.log(data[i])
@@ -64,14 +65,27 @@ function makeRequests(data){
           .then(callback.success) 
           .catch(callback.error);
     }
-    
-    /*// Source - http://www.html5rocks.com/en/tutorials/es6/promises/
-    
     */
+    
+    // Source - http://www.html5rocks.com/en/tutorials/es6/promises/
+    // Start off with a promise that always resolves
+    var sequence = Promise.resolve();
+
+    // Loop through our chapter urls
+    data.forEach(function(request) {
+        // Add these actions to the end of the sequence
+        sequence = sequence.then(function() {
+            console.log("request for key"+ request.id);
+            return get(request.url);
+          }).then(function(response) {
+            console.log(response);
+          });
+    });
+    
     
 };
 
-
+/*
 // Source - https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
 function $http(requestData){
  
@@ -148,3 +162,36 @@ var callback = {
     console.log(id, 'error', data);
   }
 };
+
+// Source - http://www.html5rocks.com/en/tutorials/es6/promises/
+function get(url) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
+      }
+      else {
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
+      }
+    };
+
+    // Handle network errors
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
+  });
+}
+*/
